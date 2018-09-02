@@ -15,10 +15,7 @@ def download(url, local_filename):
 def main():
     url = argv[1]
     r = requests.get(url, params={'__a': 1})
-    if (
-        (r.headers['content-type'] != 'application/json') or
-        (not 'graphql' in r.json())
-    ):
+    if not 'graphql' in r.json():
         raise Exception('Wrong link')
 
     media = r.json()['graphql']['shortcode_media']
